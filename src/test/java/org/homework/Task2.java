@@ -14,6 +14,7 @@ public class Task2 {
     static WebDriver driver;
     static WebDriverWait wait;
     static Actions actions;
+    static JavascriptExecutor jsExecutor;
 
     @Test
     void executeTask2() {
@@ -35,7 +36,7 @@ public class Task2 {
 
         //4. Переход на предыдущую вкладку
         driver.switchTo().window(prevTab);
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor = (JavascriptExecutor) driver;
 
         //5. Делаем лого невидимым
         jsExecutor.executeScript("document.getElementsByClassName('logo')[0].setAttribute('style', 'display:none')");
@@ -47,7 +48,7 @@ public class Task2 {
         WebElement glCanvas = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#gl-canvas"))
         );
-        actions.dragAndDropBy(glCanvas,-50,0).dragAndDropBy(glCanvas,150,0)
+        actions.dragAndDropBy(glCanvas, -50, 0).dragAndDropBy(glCanvas, 150, 0)
                 .perform();
 
         //8. Переход на следующий уровень
@@ -61,7 +62,7 @@ public class Task2 {
         goToNextLevel();
 
         //10. Зажатие ЛКМ на 7 секунд
-        clickAndHoldOnElementWithDelay(By.cssSelector("#gl-canvas"),7);
+        clickAndHoldOnElementWithDelay(By.cssSelector("#gl-canvas"), 7);
 
         //11. Переход на следующий уровень
         goToNextLevel();
@@ -70,14 +71,14 @@ public class Task2 {
         glCanvas = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#gl-canvas"))
         );
-        actions.dragAndDropBy(glCanvas,-50,0)
+        actions.dragAndDropBy(glCanvas, -50, 0)
                 .perform();
 
         //13. Переход на следующий уровень
         goToNextLevel();
 
         //14. Зажатие ЛКМ на 2 секунд
-        clickAndHoldOnElementWithDelay(By.cssSelector("#gl-canvas"),2);
+        clickAndHoldOnElementWithDelay(By.cssSelector("#gl-canvas"), 2);
 
         //15. Переход на следующий уровень
         goToNextLevel();
@@ -91,7 +92,7 @@ public class Task2 {
         WebElement draggerCursor = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".dragger-cursor"))
         );
-        actions.dragAndDropBy(draggerCursor,250,0)
+        actions.dragAndDropBy(draggerCursor, 250, 0)
                 .perform();
     }
 
@@ -101,14 +102,13 @@ public class Task2 {
                     .build()
                     .perform();
             Thread.sleep(time);
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
     @AfterAll
     static void afterAll() {
-       driver.quit();
+        driver.quit();
     }
 }
