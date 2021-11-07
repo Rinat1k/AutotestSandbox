@@ -1,4 +1,4 @@
-package org.passwordGenerator;
+package org.homework;
 
 import helpers.ConfigContainer;
 import org.junit.jupiter.api.AfterAll;
