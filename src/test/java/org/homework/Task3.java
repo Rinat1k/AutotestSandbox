@@ -55,7 +55,7 @@ public class Task3 {
         System.out.println("Количество элементов " + sizeProductElementsAtPage);
 
         wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id=\"products-list-pagination\"]//button"))
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-role=\"show-more-btn\"]"))
         ).click();
 
         //5. Проверка увеличения количества записей в 2 раза после нажатия на кнопку "Показать ещё"
