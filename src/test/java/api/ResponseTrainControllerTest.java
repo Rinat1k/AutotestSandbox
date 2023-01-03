@@ -1,9 +1,10 @@
 package api;
 
-import api.pojos.CarBrandsData;
+import api.dtos.CarBrandsDTO;
 import api.specifications.Specifications;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import utilClasses.ConfigContainer;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import static io.restassured.RestAssured.given;
 
 public class ResponseTrainControllerTest {
 
-    private final static String baseURI = "http://85.192.34.140:8080";
+    private final static String baseURI = new ConfigContainer().getProperty("baseURI");
 
     @Test
     public void checkMazdaExist() {
@@ -19,12 +20,13 @@ public class ResponseTrainControllerTest {
         Specifications.install(Specifications.requestSpecification(baseURI),
                 Specifications.responseSpecification(200));
 
-        List<CarBrandsData> carBrandsData = given().when()
+        List<CarBrandsDTO> carBrandsData = given().when()
                 .get("/api/easy/carBrands")
                 .then().extract().body()
-                .jsonPath().getList("$", CarBrandsData.class);
+                .jsonPath().getList("$", CarBrandsDTO.class);
 
-        Assertions.assertTrue(carBrandsData.stream().anyMatch(x -> x.getBrand().equals("Mazdagit ")));
+        System.out.println("Response: " + carBrandsData);
+        Assertions.assertTrue(carBrandsData.stream().anyMatch(x -> x.getBrand().equals("Mazda")));
 
     }
 

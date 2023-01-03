@@ -1,17 +1,17 @@
-package api.pojos;
+package api.dtos;
 
 import java.util.ArrayList;
 
-public class CarBrandsData {
+public class CarBrandsDTO {
 
     String brand;
     ArrayList<String> models;
 
-    public CarBrandsData() {
+    public CarBrandsDTO() {
 
     }
 
-    public CarBrandsData(String brand, ArrayList<String> models) {
+    public CarBrandsDTO(String brand, ArrayList<String> models) {
         this.brand = brand;
         this.models = models;
     }
@@ -22,5 +22,10 @@ public class CarBrandsData {
 
     public ArrayList<String> getModels() {
         return models;
+    }
+
+    @Override
+    public String toString() {
+        return getBrand();
     }
 }
