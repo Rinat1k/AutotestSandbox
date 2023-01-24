@@ -11,10 +11,11 @@
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
-        <selenium.version>3.141.59</selenium.version>
+        <selenium.version>4.0.0</selenium.version>
         <junit.jupiter.version>5.8.1</junit.jupiter.version>
         <rest.assured.version>5.3.0</rest.assured.version>
         <jackson.databind.version>2.14.1</jackson.databind.version>
+        <log4j.core.version>2.18.0</log4j.core.version>
     </properties>
     <dependencies>
         <dependency>
@@ -37,6 +38,16 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.databind.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>2.0.0</version>
         </dependency>
 
     </dependencies>

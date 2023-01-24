@@ -2,10 +2,15 @@ package utilClasses;
 
 import enums.BrowserName;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class WebDriverContainer {
+
+    private final static String SELENIUM_SERVER_URL = "http://localhost:4444/wd/hub";
 
     public static WebDriver getCustomizedDriver(BrowserName browserName) throws IllegalArgumentException {
         switch (browserName) {
@@ -25,12 +30,22 @@ public class WebDriverContainer {
         }
     }
 
-    private static ChromeDriver getChromeDriverSetting() {
-        System.setProperty("webdriver.chrome.driver", new ConfigContainer().getProperty("chromeDriver"));
+    private static WebDriver getChromeDriverSetting() {
+//        System.setProperty("webdriver.chrome.driver", new ConfigContainer().getProperty("chromeDriver"));
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("start-maximized");
         chromeOptions.addArguments("disable-popup-blocking");
-        return new ChromeDriver(chromeOptions);
+        return new RemoteWebDriver(getSeleniumServerURL(), chromeOptions);
     }
 
+
+    public static URL getSeleniumServerURL() {
+        URL url = null;
+        try {
+          url = new URL(SELENIUM_SERVER_URL);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return url;
+    }
 }

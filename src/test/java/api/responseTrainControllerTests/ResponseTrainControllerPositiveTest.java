@@ -1,23 +1,20 @@
-package api;
+package api.responseTrainControllerTests;
 
+import api.BaseTest;
 import api.dtos.CarBrandsDTO;
 import api.specifications.Specifications;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import utilClasses.ConfigContainer;
 
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class ResponseTrainControllerTest {
-
-    private final static String baseURI = new ConfigContainer().getProperty("baseURI");
-
+public class ResponseTrainControllerPositiveTest extends BaseTest {
     @Test
     public void checkMazdaExist() {
 
-        Specifications.install(Specifications.requestSpecification(baseURI),
+        Specifications.install(Specifications.requestSpecification(BASE_URI),
                 Specifications.responseSpecification(200));
 
         List<CarBrandsDTO> carBrandsData = given().when()
@@ -25,7 +22,7 @@ public class ResponseTrainControllerTest {
                 .then().extract().body()
                 .jsonPath().getList("$", CarBrandsDTO.class);
 
-        System.out.println("Response: " + carBrandsData);
+        LOGGER.info(carBrandsData);
         Assertions.assertTrue(carBrandsData.stream().anyMatch(x -> x.getBrand().equals("Mazda")));
 
     }

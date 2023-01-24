@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class CarBrandsDTO {
 
-    String brand;
-    ArrayList<String> models;
+    private String brand;
+    private ArrayList<String> models;
 
     public CarBrandsDTO() {
 
