@@ -13,7 +13,7 @@ public class TextBoxTest {
     @BeforeEach
     public void beforeEach() {
         mainPage = new MainPage(WebDriverContainer.getCustomizedDriver(BrowserName.CHROME));
-        mainPage.getDriver().get(new ConfigContainer().getProperty("baseURIForUITest"));
+        mainPage.getDriver().get(new ConfigContainer().getProperty("BASE_URI_FOR_UI_TESTS"));
     }
 
     @Test

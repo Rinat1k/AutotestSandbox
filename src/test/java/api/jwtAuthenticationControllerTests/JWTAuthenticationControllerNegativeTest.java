@@ -5,17 +5,16 @@ import api.dtos.UserDTO;
 import api.specifications.Specifications;
 import api.dtos.FailedLoginDTO;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
 public class JWTAuthenticationControllerNegativeTest extends BaseTest {
-
     @Test
+    @DisplayName("Negative login test")
     public void negativeLoginTest() {
-        Specifications.install(Specifications.requestSpecification(BASE_URI),
-                Specifications.responseSpecification(401));
-
         FailedLoginDTO failedLogin = given()
                 .body(new UserDTO("failed login", "failed password"))
                 .when()
@@ -27,5 +26,4 @@ public class JWTAuthenticationControllerNegativeTest extends BaseTest {
 
         Assertions.assertTrue(failedLogin.getError().equalsIgnoreCase("Unauthorized"));
     }
-
 }

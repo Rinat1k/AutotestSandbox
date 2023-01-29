@@ -16,15 +16,8 @@ public class Specifications {
                 .build();
     }
 
-    public static ResponseSpecification responseSpecification(int statusCode) {
-        return new ResponseSpecBuilder()
-                .expectStatusCode(statusCode)
-                .build();
-    }
-
-    public static void install(RequestSpecification requestSpecification, ResponseSpecification responseSpecification) {
+    public static void install(RequestSpecification requestSpecification) {
         RestAssured.requestSpecification = requestSpecification;
-        RestAssured.responseSpecification = responseSpecification;
     }
 
 }
