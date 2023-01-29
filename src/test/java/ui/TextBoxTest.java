@@ -17,7 +17,7 @@ public class TextBoxTest {
     }
 
     @Test
-    public void positiveCheck() {
+    public void positiveTest() {
         String[] fixture = {"Autotest Autotestov Autotestovich", "autotest@hotmail.com",
                 "Mexico-city, Martinez street", "New-York city, Bevenue street"};
         mainPage.clickOnElementsButton()
